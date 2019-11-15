@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class MotoService {
 
-  private _getAllProduct = "/api/getAllProduct";
+  private _getAllProduct = "http://localhost:3000/api/getAllProduct";
 
 
   constructor(private _http: Http) { }

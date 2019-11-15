@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Moto } from './../moto';
-import { MotoService } from '../moto.service';
+import { Moto } from '../../service/moto-service/moto';
+import { MotoService } from '../../service/moto-service/moto.service';
 
 @Component({
   selector: 'app-motobike-list',
