@@ -55,7 +55,7 @@ angular.module('mainController',[])
                 app.loading =false;
                 app.successMsg = data.data.message + '.... Redirecting';
                 $timeout(function(){
-                    $location.path('/about');
+                    $location.path('/');
                     app.successMsg = false;
                     app.loginData = '';
                 },2000)
@@ -76,7 +76,7 @@ angular.module('mainController',[])
         $timeout(function(){
             $location.path('/');
             app.username='';
-        },2000);
+        },100);
     }
 });
 

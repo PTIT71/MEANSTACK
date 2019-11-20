@@ -52,6 +52,10 @@ angular.module('appRoutes',['ngRoute'])
         controller: 'googleCtrl',
         controllerAs: 'google'
     })
+
+    .when('/view/:id', {
+        templateUrl: "app/views/pages/users/detail.html",
+    })
     
     .otherwise({redirectTo: '/'});
 

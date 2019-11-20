@@ -4,6 +4,7 @@ angular.module('userControllers',[])
 .controller('regCtrl', function($http, $location,$timeout,User){
 
     var app =this;
+    regData = '';
 
     this.regUser = function(regData){
 
@@ -18,7 +19,7 @@ angular.module('userControllers',[])
                 app.loading =false;
                 app.successMsg = data.data.message + '.... Redirecting';
                 $timeout(function(){
-                    $location.path('/');
+                    $location.path('/login');
                 },3000)
                 
             }
