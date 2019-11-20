@@ -1,0 +1,5 @@
+PROJECT MỚI NẰM TRONG THƯ MỤC: SalesMotobike
+
+MỞ TERMINAL TẠI FOLDER SalesMotobike
+Chay: node server.js
+==> Mở app trên Browse: localhost:3100/

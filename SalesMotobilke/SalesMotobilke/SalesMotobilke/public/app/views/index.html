@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Motobike sales</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/amination.css" rel="stylesheet">
+  <link href="assets/css/home-page/style.css" rel="stylesheet">
+
+  
+  <!-- Custom styles for this template -->
+  <link href="assets/css/home-page/shop-homepage.css" rel="stylesheet">
+
+
+  <script src="assets/js/angular.js"></script>
+  <script src="assets/js/angular-route.js"></script>
+  <script src="assets/js/angular-animate.js"></script>
+
+  <script src="app/app.js"></script>
+  <script src="app/routes.js"></script>
+
+
+  <script src="app/services/userServices.js"></script>
+  <script src="app/services/authServices.js"></script>
+
+
+  <script src="app/controllers/userCtrl.js"></script>
+  <script src="app/controllers/mainCtrl.js"></script>
+
+
+
+  
+  
+ 
+  
+ 
+
+</head>
+
+<body ng-app="userApp" ng-controller="mainCtrl as main">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">MOTOBIKE STAR</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto" style="font-size:20px; font-weight: 500;">
+          <li class="nav-item">
+            <a class="nav-link btn btn-success" style="color: aliceblue;" ng-show="!main.isLoggedIn" href="/login">Đăng nhập</a>
+          </li>      
+          <li class="nav-item">
+              <a class="nav-link" ng-show="main.isLoggedIn" href="/profile"  >{{main.username}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-danger" style="color: aliceblue;" ng-show="main.isLoggedIn" href="#" ng-click="main.logout();">Đăng xuất</a>
+            </li>
+           
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row" style="margin-top:50px;">
+
+      <div class="col-lg-3">
+        <div class="list-group">
+          <a href="#" class="list-group-item">Category 1</a>
+          <a href="#" class="list-group-item">Category 2</a>
+          <a href="#" class="list-group-item">Category 3</a>
+        </div>
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9" >
+        <div ng-view class="row">
+        </div>
+        <!-- /.row -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="assets/jquery/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

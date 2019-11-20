@@ -1,0 +1,41 @@
+
+<div class="col-lg-12 col-md-12 mb-12">
+
+    <form ng-submit="register.regUser(regData);">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control"  placeholder="Enter email" name="email" ng-model="register.regData.email">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Username:</label>
+            <input type="text" class="form-control"  placeholder="Enter username" name="username" ng-model="register.regData.username" >
+          </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control"  placeholder="Enter password" name="password" ng-model="register.regData.password">
+        </div>
+        <div class="form-group form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="remember"> Remember me
+          </label>
+        </div>  
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+      <br>
+      <div class=" text-center" ng-show="register.loading">
+          <span class="glyphicon glyphicon-repeat spinner">
+               <img src="resources/images/loading.gif" width="100px" height="100px">
+          <p>Loading....</p>
+      </div>
+      <div class="row show-hide-message" ng-show="register.successMsg" style="margin: 0px; margin-top: 10px;">
+        <div class="alert alert-success" style="width: 100%; ">
+            {{register.successMsg}}
+        </div>
+        </div>
+        <div class="row show-hide-message" ng-show="register.errorMsg" style="margin: 0px;  margin-top: 10px;">
+            <div class="alert alert-danger" style="width: 100%;">
+                {{register.errorMsg}}
+            </div>
+        </div>
+    
+</div>

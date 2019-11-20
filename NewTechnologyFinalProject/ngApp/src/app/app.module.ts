@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {   HttpClientModule } from '@angular/common/http';
 import { MotobikeListComponent } from './component/motobike-list/motobike-list.component';
+import { LoginComponent } from './component/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MotobikeListComponent } from './component/motobike-list/motobike-list.c
     VideoCenterComponent,
     VideoListComponent,
     VideoDetailComponent,
-    MotobikeListComponent
+    MotobikeListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

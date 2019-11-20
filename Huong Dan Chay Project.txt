@@ -1,8 +1,0 @@
-PROJECT MỚI NẰM TRONG THƯ MỤC: NewTechnologyFinalProject
-
-MỞ TERMINAL TẠI FOLDER ngAPP
-- Chạy: node server ---> App run on port 3000
-MỞ TERMINAL THỨ 2 CŨNG TẠI ngApp
-- Chạy: ng build ---> Build project
-- Chạy tiếp: ng serve -o Chạy Angular.
-==> Mở app trên Browse: localhost:3000
