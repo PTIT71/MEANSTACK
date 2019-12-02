@@ -8,6 +8,7 @@ var bodyParser= require('body-parser');
 var router = express.Router();
 var appRoutes = require('./app/routes/api')(router);
 var appProduct = require('./app/routes/productsAPI')(router);
+var appOrder = require('./app/routes/order')(router);
 var path = require('path');
 var passport = require('passport');
 var social = require("./app/passport/passport")(app, passport);
@@ -21,6 +22,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use('/api',appRoutes);
 app.use('/product',appProduct);
+app.use('/order', appOrder);
 mongoose.connect(connString, function(err){
     if(err){
         console.log('Not connected Database: ' + err)

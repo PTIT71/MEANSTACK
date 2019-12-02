@@ -81,23 +81,24 @@ module.exports = function(router){
     router.use(function(req,res,next){
         var token = req.body.token || req.body.query || req.headers['x-access-token'];
 
-        if(token)
-        {
-            jwt.verify(token, secret, function(err, decoded){
+        // if(token)
+        // {
+        //     jwt.verify(token, secret, function(err, decoded){
 
-                if(err)  
-                    res.json({success:false, message: 'Token invalid'});
-                else
-                {
-                    req.decoded = decoded;
-                    next();
-                }
+        //         if(err)  
+        //             res.json({success:false, message: 'Token invalid'});
+        //         else
+        //         {
+        //             req.decoded = decoded;
+        //             next();
+        //         }
                 
-            });
-        }
-        else{
-            res.json({success:false, message: 'No token provides'});
-        }
+        //     });
+        // }
+        // else{
+        //     res.json({success:false, message: 'No token provides'});
+        // }
+        next();
     })
 
     router.post('/me', function(req,res){
