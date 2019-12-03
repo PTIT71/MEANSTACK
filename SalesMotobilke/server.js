@@ -20,9 +20,10 @@ app.use(bodyParser.json());
 //form url lencaded
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
+app.use('/api/order', appOrder);
 app.use('/api',appRoutes);
 app.use('/product',appProduct);
-app.use('/order', appOrder);
+
 mongoose.connect(connString, function(err){
     if(err){
         console.log('Not connected Database: ' + err)

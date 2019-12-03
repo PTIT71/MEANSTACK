@@ -15,7 +15,7 @@
   <link href="assets/css/amination.css" rel="stylesheet">
   <link href="assets/css/home-page/style.css" rel="stylesheet">
 
-  
+
   <!-- Custom styles for this template -->
   <link href="assets/css/home-page/shop-homepage.css" rel="stylesheet">
 
@@ -35,13 +35,8 @@
   <script src="app/controllers/userCtrl.js"></script>
   <script src="app/controllers/mainCtrl.js"></script>
 
-
-
-  
-  
- 
-  
- 
+  <script src="app/services/orderService.js"></script>
+  <script src="app/controllers/orderController.js"></script>
 
 </head>
 
@@ -51,22 +46,25 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="/">MOTOBIKE STAR</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="font-size:20px; font-weight: 500;">
           <li class="nav-item">
-            <a class="nav-link btn btn-success" style="color: aliceblue;" ng-show="!main.isLoggedIn" href="/login">Đăng nhập</a>
-          </li>      
+            <a class="nav-link btn btn-success" style="color: aliceblue;" ng-show="!main.isLoggedIn" href="/login">Đăng
+              nhập</a>
+          </li>
           <li class="nav-item">
-              <a class="nav-link" ng-show="main.isLoggedIn" href="/profile"  >{{main.username}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn btn-danger" style="color: aliceblue;" ng-show="main.isLoggedIn" href="#" ng-click="main.logout();">Đăng xuất</a>
-            </li>
-           
-          
+            <a class="nav-link" ng-show="main.isLoggedIn" href="/profile">{{main.username}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-danger" style="color: aliceblue;" ng-show="main.isLoggedIn" href="#"
+              ng-click="main.logout();">Đăng xuất</a>
+          </li>
+
+
         </ul>
       </div>
     </div>
@@ -76,42 +74,42 @@
   <div class="container">
 
     <div class="row" style="margin-top:20px;">
-      <div class="col-lg-12" >
+      <div class="col-lg-12">
         <div ng-view class="row">
         </div>
       </div>
-  </div>
+    </div>
   </div>
   <!-- /.container -->
 
-<!-- Footer -->
-<!-- Footer -->
-<footer class="page-footer font-small blue pt-4" style="background-color: #343a40; color: white;">
+  <!-- Footer -->
+  <!-- Footer -->
+  <footer class="page-footer font-small blue pt-4" style="background-color: #343a40; color: white;">
 
     <!-- Footer Links -->
     <div class="container container-fluid text-center text-md-left">
-  
+
       <!-- Grid row -->
-      <div class="row" >
-  
+      <div class="row">
+
         <!-- Grid column -->
         <div class="col-md-6 mt-md-0 mt-3">
-  
+
           <!-- Content -->
           <h5 class="text-uppercase">MOTOBIKE STAR</h5>
           <p>The system sales retail motobike largest in Viet Nam</p>
-  
+
         </div>
         <!-- Grid column -->
-  
+
         <hr class="clearfix w-100 d-md-none pb-3">
-  
+
         <!-- Grid column -->
         <div class="col-md-3 mb-md-0 mb-3">
-  
+
           <!-- Links -->
           <h5 class="text-uppercase">Links</h5>
-  
+
           <ul class="list-unstyled">
             <li>
               <a href="#!">Link 1</a>
@@ -126,16 +124,16 @@
               <a href="#!">Link 4</a>
             </li>
           </ul>
-  
+
         </div>
         <!-- Grid column -->
-  
+
         <!-- Grid column -->
         <div class="col-md-3 mb-md-0 mb-3">
-  
+
           <!-- Links -->
           <h5 class="text-uppercase">Links</h5>
-  
+
           <ul class="list-unstyled">
             <li>
               <a href="#!">Link 1</a>
@@ -150,22 +148,22 @@
               <a href="#!">Link 4</a>
             </li>
           </ul>
-  
+
         </div>
         <!-- Grid column -->
-  
+
       </div>
       <!-- Grid row -->
-  
+
     </div>
     <!-- Footer Links -->
-  
+
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3" style="background-color: #6c757d;">© 2019 Copyright:
       <a href="https://mdbootstrap.com/education/bootstrap/">Group 10 The New Technology</a>
     </div>
     <!-- Copyright -->
-  
+
   </footer>
   <!-- Footer -->
   <!-- Footer -->
