@@ -7,6 +7,9 @@ module.exports = function (router) {
     //Get all order
     router.get('/', async function (req, res) {
         Order.find({})
+            .sort({
+                '_id': -1
+            })
             .exec(function (err, orders) {
                 if (err) {
                     console.log("Get all order got exception ");
@@ -144,6 +147,8 @@ module.exports = function (router) {
             Order.find({
                 email: user.email,
                 state: 'FINISH_ORDER'
+            }).sort({
+                '_id': -1
             }).exec((err, orders) => {
                 if (err) {
                     return res.json({

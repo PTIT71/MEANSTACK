@@ -2,41 +2,35 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-list-search">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Entry</th>
-                        <th>Entry</th>
-                        <th>Entry</th>
-                        <th>Entry</th>
-                        <th>Entry</th>
-                        <th>Entry</th>
+                        <th>No</th>
+                        <th>Product</th>
+                        <th>Count</th>
+                        <th>Cost</th>
+                        <th>State</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Sample</td>
-                        <td>Filter</td>
-                        <td>12-11-2011 11:11</td>
-                        <td>OK</td>
-                        <td>123</td>
-                        <td>Do some other</td>
-                    </tr>
-                    <tr>
-                        <td>Try</td>
-                        <td>It</td>
-                        <td>11-20-2013 08:56</td>
-                        <td>It</td>
-                        <td>Works</td>
-                        <td>Do some FILTERME</td>
-                    </tr>
-                    <tr>
-                        <td>§</td>
-                        <td>$</td>
-                        <td>%</td>
-                        <td>&</td>
-                        <td>/</td>
-                        <td>!</td>
+                    <tr ng-repeat="order in order.data">
+                        <td>{{order.no}}</td>
+                        <td>
+                            <div>
+                                <div ng-repeat="product in order.productInOrder">
+                                    <div><strong>{{product.name}}</strong></div>
+                                    <div style="margin-left: 25px;">Count : <span class="badge">{{product.count}}</span>
+                                    </div>
+                                    <div style="margin-left: 25px;">Cost : <span
+                                            class="badge">{{product.cost | currency}}</span> </div>
+
+                                </div>
+                            </div>
+
+                        </td>
+                        <td>{{order.count}}</td>
+                        <td>{{order.cost | currency}}</td>
+                        <td>{{order.state}}</td>
                     </tr>
                 </tbody>
             </table>

@@ -6,8 +6,7 @@ var orderSchema = new Schema({
     email: {
         type: String,
         required: true,
-        lowercase: true,
-        unique: true
+        lowercase: true
     },
     productInOrder: {
         type: Array,
