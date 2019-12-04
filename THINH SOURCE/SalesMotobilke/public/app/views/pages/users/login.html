@@ -1,0 +1,65 @@
+
+<div class="col-lg-6 col-md-6 mb-6" style="margin: auto;">
+        <h1 style="text-align: center;">Login</h1>
+        <form ng-submit="main.doLogin(loginData);">
+            <div class="form-group">
+                <label for="pwd">Username:</label>
+                <input type="text" class="form-control"  placeholder="Enter username" name="username" ng-model="main.loginData.username" >
+              </div>
+            <div class="form-group">
+              <label for="pwd">Password:</label>
+              <input type="password" class="form-control ng-pristine ng-untouched ng-valid ng-empty"  placeholder="Enter password" name="password" ng-model="main.loginData.password">
+            </div>
+            <div class="form-group form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" name="remember"> Remember me
+              </label>
+            </div> 
+            <div class="row">
+              <button type="submit" style="width:250px; margin: auto; margin-top: 5px;" class="btn btn-primary">Đăng nhập</button>&nbsp;<br>
+            </div>
+            <div class="row">
+              <button type="button"  style="width:250px ; margin: auto; margin-top: 5px; background-color: #15317E; border: 0px;" class="btn btn-success" ng-click="main.facebook();"><img src="resources/images/facebook.png" width="30px" height="30px" style="margin-right:5px;">Đăng nhập Facebook</button>&nbsp;<br>
+            </div>
+            <div class="row">
+              <button type="button"  style="width:250px ; margin: auto; margin-top: 5px; border: 0px; background-color: #CC0000;" class="btn btn-success" ng-click="main.google();"><img src="resources/images/google.png" width="30px" height="30px" style="margin-right:5px;">Đăng nhập Google</button>
+            </div>
+            <div class="row">
+              <button type="button" style="width:250px; margin: auto; margin-top: 5px; border: 0px; background-color: none;"  class="btn btn-success" ng-click="main.register();">Đăng ký tài khoản</button>&nbsp;<br>
+            </div>
+        
+          
+          </form>
+          <br>
+          <div class="jumbotron text-center" ng-show="register.loading">
+              <span class="glyphicon glyphicon-repeat spinner">
+                    <span class="glyphicon glyphicon-refresh glyphicon-spin"></span>
+                  
+              </span>
+              <p>Loading....</p>
+          </div>
+          <div class="row show-hide-message" ng-show="main.successMsg" style="margin: 0px; margin-top: 10px;">
+            <div class="alert alert-success" style="width: 100%; ">
+                {{main.successMsg}}
+            </div>
+            </div>
+            <div class="row show-hide-message" ng-show="main.errorMsg" style="margin: 0px;  margin-top: 10px;">
+                <div class="alert alert-danger" style="width: 100%;">
+                    {{main.errorMsg}}
+                </div>
+            </div>
+            <div class="row show-hide-message" ng-show="facebook.errorMsg" style="margin: 0px;  margin-top: 10px;">
+              <div class="alert alert-danger" style="width: 100%;">
+                  {{facebook.errorMsg}}
+              </div>
+          </div>
+          <div class="row show-hide-message" ng-show="google.errorMsg" style="margin: 0px;  margin-top: 10px;">
+            <div class="alert alert-danger" style="width: 100%;">
+                {{google.errorMsg}}
+               
+
+            </div>
+            
+        </div>
+        
+    </div>
