@@ -118,9 +118,9 @@ module.exports = function(router){
     });
 
     router.post('/authenticate', function(req,res){
-        User.findOne({username: req.body.username}).select('email username password').exec(function(err,user){
+        User.findOne({username: req.body.username}).select('_id email username password').exec(function(err,user){
             if(err) throw err;
-
+            console.log("authenticate : " + JSON.stringify(user))
             if(!user){
                 res.json({success:false, message:'Could not authenticate user'});
             }

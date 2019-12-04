@@ -8,8 +8,10 @@ angular.module('mainController',[])
         if (Auth.isLoggedIn()) {
             app.isLoggedIn = true;
             Auth.getUser().then(function(data) {
+                console.log("Auth data " + JSON.stringify(data.data))
                 app.username = data.data.username;
                 app.useremail = data.data.email;
+                app.userid = data.data.userid;
                 app.loadme = true;
                 if (data.data.expired) app.logout();
             });
@@ -17,6 +19,7 @@ angular.module('mainController',[])
             app.isLoggedIn = false;
             app.username = '';
             app.loadme = true;
+            app.userid = '';
         }
         if ($location.hash() == '_=_') $location.hash(null);
 
