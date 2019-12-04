@@ -16,7 +16,7 @@ module.exports = function(app, passport){
 
   passport.serializeUser(function(user, done) {    
     console.log('----------serializeUser---------');
-    token = jwt.sign({username: user.username, email: user.email}, secret, {expiresIn: 10});
+    token = jwt.sign({username: user.username, email: user.email, userid: user._id}, secret, {expiresIn: 10});
     done(null, user.id);
   });
   
