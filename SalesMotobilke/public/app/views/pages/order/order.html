@@ -1,6 +1,14 @@
-{{main.userid}}
-<div class="container" ng-init="order.getOrdersByUser(main.userid);">
+<div class="container" ng-init="order.getOrdersByUser(main.userid);" style="min-height: 430px;">
     <div class="row">
+        <div class="col-md-12" style="padding-bottom: 10px; display: inline;">
+            <div style="float: left;">
+                <h3>Giỏ hàng</h3>
+            </div>
+            <button type="button" class="btn btn-info" ng-click="order.goHome()" style="float: right;">
+                <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+            </button>
+        </div>
+
         <div class="col-md-12">
             <table class="table table-bordered">
                 <thead>
@@ -13,7 +21,12 @@
                         <th> </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody ng-if="order.orders.length == 0">
+                    <tr>
+                        <td colspan="6" style="text-align: center;">No order</td>
+                    </tr>
+                </tbody>
+                <tbody ng-if="order.orders.length != 0">
                     <tr ng-repeat="orderDetail in order.orders" ng-if="orderDetail != null">
                         <td>{{orderDetail.no}}</td>
                         <td>
@@ -27,7 +40,6 @@
 
                                 </div>
                             </div>
-
                         </td>
                         <td>{{orderDetail.count}}</td>
                         <td>{{orderDetail.cost | currency}}</td>

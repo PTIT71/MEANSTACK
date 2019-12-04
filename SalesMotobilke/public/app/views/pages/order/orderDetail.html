@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-info" ng-click="order.back();">
+<button type="button" class="btn btn-info" ng-click="order.back();" style="min-height: 430px;">
     <span class="glyphicon glyphicon-remove"></span> Back
 </button></td>
 <div class="container" ng-init="order.getOrder();">
@@ -25,12 +25,12 @@
                                 <div class="media-body">
                                     <h4 class="media-heading"><a href="#">{{product.name}}</a></h4>
                                     <h5 class="media-heading"><a href="#">{{product.description}}</a></h5>
-                                    <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                    <!-- <span>Status: </span><span class="text-success"><strong>In Stock</strong></span> -->
                                 </div>
                             </div>
                         </td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                            <input type="email" class="form-control" id="exampleInputEmail1" value="{{product.count}}">
+                            <input class="form-control" id="exampleInputEmail1" value="{{product.count}}" disabled>
                         </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>{{product.cost | currency}}</strong></td>
                         <td class="col-sm-1 col-md-1 text-center">

@@ -7,7 +7,7 @@ angular.module('orderController', [])
                 console.log(data.data);
                 let orders = data.data;
                 let no = 1;
-                app.orders = orders.map((order, index) => {
+                orders = orders.map((order, index) => {
                     if (order.productInOrder.length == 0) {
                         return null;
                     }
@@ -22,6 +22,9 @@ angular.module('orderController', [])
                     order.cost = cost;
                     return order;
                 });
+                app.orders = orders.filter((order) => {
+                    return order != null;
+                })
             });
         };
 
@@ -31,7 +34,7 @@ angular.module('orderController', [])
                 console.log(data.data);
                 let orders = data.data;
                 let no = 1;
-                app.orders = orders.map((order, index) => {
+                orders = orders.map((order, index) => {
                     if (order.productInOrder.length == 0) {
                         return null;
                     }
@@ -46,6 +49,9 @@ angular.module('orderController', [])
                     order.cost = cost;
                     return order;
                 });
+                app.orders = orders.filter((order) => {
+                    return order != null;
+                })
             });
         };
 
