@@ -6,7 +6,7 @@ angular.module('orderService', [])
         }
 
         orderFactory.getOrdersByUser = function (userId) {
-            return $http.get('/api/order/' + userId);
+            return $http.get('/api/order/user/' + userId);
         }
 
 

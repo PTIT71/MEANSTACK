@@ -16,7 +16,7 @@ module.exports = function(app, passport){
 
   passport.serializeUser(function(user, done) {    
     console.log('----------serializeUser---------');
-    token = jwt.sign({username: user.username, email: user.email}, secret, {expiresIn: 300});
+    token = jwt.sign({username: user.username, email: user.email, userid: user._id}, secret, {expiresIn: 300});
     done(null, user.id);
   });
   
@@ -33,7 +33,7 @@ module.exports = function(app, passport){
       },
       function(accessToken, refreshToken, profile, done) {
         console.log('----------------'+ profile._json.email);
-        User.findOne({email: profile._json.email}).select('username password email')
+        User.findOne({email: profile._json.email}).select('_id username password email')
         .exec(function(err,user){
          
             if(err) {
@@ -72,7 +72,7 @@ module.exports = function(app, passport){
         // User.findOrCreate({ googleId: profile.id }, function (err, user) {
         //   return done(err, user);
         // });
-        User.findOne({email: profile._json.email}).select('username password email')
+        User.findOne({email: profile._json.email}).select('_id username password email')
         .exec(function(err,user){
          
             if(err) {
