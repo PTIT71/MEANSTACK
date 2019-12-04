@@ -98,9 +98,9 @@ angular.module('userControllers',[])
    
      console.log("Hellooooooooo");
      $scope.ids = $routeParams.ids;
-     //$scope.productONLY.CommentData.name = "sfsdfsdf";
-    // $scope.productONLY.CommentData.idProduct = $routeParams.ids;
-    // $scope.productONLY.CommentData.date = new Date();
+     $scope.productONLY.CommentData.name = "sfsdfsdf";
+     $scope.productONLY.CommentData.idProduct = $routeParams.ids;
+     $scope.productONLY.CommentData.date = new Date();
      var app =this;
      /*
         this.getOnlyProduct = function(){
@@ -123,7 +123,7 @@ angular.module('userControllers',[])
             ProductOnly.get($scope.ids).then(function(data){
                 console.log(data.data);
                 app.dataonly = data.data;
-                console.log('-------la la lal a aaaaaaaaaaaaa-----------');
+                console.log('-------la la lal a-----------');
                 console.log(app.dataonly);
             });
         }
@@ -140,7 +140,7 @@ angular.module('userControllers',[])
                 });
         }
 
-     
+        var app =this;
         this.doComment = function(CommentData){
             console.log('Submit form comment');
             console.log(app.CommentData);
