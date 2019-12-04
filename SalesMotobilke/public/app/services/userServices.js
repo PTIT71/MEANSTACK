@@ -38,4 +38,12 @@ angular.module('userServices',[])
         return $http.post('/api/comment', CommentData);
     }
     return commentFactory;
+})
+
+.factory('OrderProduct' , function($http){
+    orderProductFactory = {};
+    orderProductFactory.create = function(OrderData){
+        return $http.post('/api/addOrder', OrderData);
+    }
+    return orderProductFactory;
 });

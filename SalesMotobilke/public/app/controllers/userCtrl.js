@@ -94,7 +94,7 @@ angular.module('userControllers',[])
     };
   });
   */
- .controller('OnlyProduct',  function(Comment, ProductComment, ProductOnly, $scope, $routeParams) {
+ .controller('OnlyProduct',  function(OrderProduct, Comment, ProductComment, ProductOnly, $scope, $routeParams) {
    
      console.log("Hellooooooooo");
      $scope.ids = $routeParams.ids;
@@ -162,10 +162,29 @@ angular.module('userControllers',[])
                     app.errorMsg = data.data.message;
                 }
             });
-        };
+        }
 
-        this.SelectProduct = function(){
-            console.log("23456789234567890234567890345678034567890");
+        this.SelectProduct = function(OrderData){
+            console.log('Submit form order');
+            console.log(app.OrderData);
+            OrderProduct.create(app.OrderData).then(function(data){
+                console.log(data.data.success);
+                console.log(data.data.message);
+                if(data.data.success)
+                {
+                    app.loading =false;
+                    app.successMsg = data.data.message + '.... Redirecting';
+                    $timeout(function(){
+                        $location.path('/');
+                    },3000)
+                    
+                }
+                else
+                {
+                    app.loading =false;
+                    app.errorMsg = data.data.message;
+                }
+            });
         };
 
     });

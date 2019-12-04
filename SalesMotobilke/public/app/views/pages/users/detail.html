@@ -356,63 +356,70 @@
               
                     
     </div>
+    {{main.username}}
+    {{main._id}}
     <div class="col-lg-9" data-ng-init="productONLY.getOnlyProduct();">
             {{productONLY.dataonly}}
-            {{main._id}}
+           
             <div class="col-sm-12 col-md-12 col-lg-12">
                     <!-- product -->
                     <div class="product-content product-wrap clearfix product-deatil">
                         <div class="row">
-                            <div class="col-md-5 col-sm-12 col-xs-12 ">
-                                <div class="product-image">
-                                    <div id="myCarousel-2" class="carousel slide">
-                                        <div class="carousel-inner">
-                                            <!-- Slide 3  resources/images/{{productONLY.image}}-->
-                                            <div class="item">
-                                                <img src="resources/images/{{productONLY.dataonly.image}}" width="100%" style="padding: 20px;" alt="">
+                            <form ng-submit="productONLY.SelectProduct(OrderData);">
+                                    <input type="text" class="form-control"     ng-model="productONLY.OrderData.userId" >
+                                    <input type="text" class="form-control"    ng-model="productONLY.OrderData.productId" >
+                                    <div class="col-md-5 col-sm-12 col-xs-12 ">
+                                            <div class="product-image">
+                                                <div id="myCarousel-2" class="carousel slide">
+                                                    <div class="carousel-inner">
+                                                        <!-- Slide 3  resources/images/{{productONLY.image}}-->
+                                                        <div class="item">
+                                                            <img src="resources/images/{{productONLY.dataonly.image}}" width="100%" style="padding: 20px;" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <a class="left carousel-control" href="#myCarousel-2" data-slide="prev"> <span
+                                                            class="glyphicon glyphicon-chevron-left"></span> </a>
+                                                    <a class="right carousel-control" href="#myCarousel-2" data-slide="next"> <span
+                                                            class="glyphicon glyphicon-chevron-right"></span> </a>
+                                                </div>
                                             </div>
                                         </div>
-                                        <a class="left carousel-control" href="#myCarousel-2" data-slide="prev"> <span
-                                                class="glyphicon glyphicon-chevron-left"></span> </a>
-                                        <a class="right carousel-control" href="#myCarousel-2" data-slide="next"> <span
-                                                class="glyphicon glyphicon-chevron-right"></span> </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-7 col-sm-12 col-xs-12">
-                                
-                                <h2 class="name">
-                                    {{productONLY.dataonly.name}}
-                                    <small> <a href="javascript:void(0);"></a></small>
-                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                    <i class="fa fa-star fa-2x text-primary"></i>
-                                    <i class="fa fa-star fa-2x text-muted"></i>
-                                    <span class="fa fa-2x">
-                                        <h5>(109) Votes</h5>
-                                    </span>
-                                    <a href="javascript:void(0);">109 customer reviews</a>
-                                </h2>
-                                <hr>
-                                <h3 class="price-container">
-                                    $ {{productONLY.dataonly.cost}}
-                                    <small>*includes tax</small>
-                                </h3>
-                                <div class="certified">
-                                    <ul>
-                                        <li><a href="javascript:void(0);">Delivery time<span>7 Working Days</span></a></li>
-                                        <li><a href="javascript:void(0);">Certified<span>Quality Assured</span></a></li>
-                                    </ul>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                        <div class="col-sm-12 col-md-6 col-lg-6">           
-                                            <button type="button"  class="btn btn-success" ng-click="productONLY.SelectProduct();">Add to cart</button>&nbsp;<br>
-
+                                        <div class="col-md-7 col-sm-12 col-xs-12">
+                                            
+                                            <h2 class="name">
+                                                {{productONLY.dataonly.name}}
+                                                <small> <a href="javascript:void(0);"></a></small>
+                                                <i class="fa fa-star fa-2x text-primary"></i>
+                                                <i class="fa fa-star fa-2x text-primary"></i>
+                                                <i class="fa fa-star fa-2x text-primary"></i>
+                                                <i class="fa fa-star fa-2x text-primary"></i>
+                                                <i class="fa fa-star fa-2x text-muted"></i>
+                                                <span class="fa fa-2x">
+                                                    <h5>(109) Votes</h5>
+                                                </span>
+                                                <a href="javascript:void(0);">109 customer reviews</a>
+                                            </h2>
+                                            <hr>
+                                            <h3 class="price-container">
+                                                $ {{productONLY.dataonly.cost}}
+                                                <small>*includes tax</small>
+                                            </h3>
+                                            <div class="certified">
+                                                <ul>
+                                                    <li><a href="javascript:void(0);">Delivery time<span>7 Working Days</span></a></li>
+                                                    <li><a href="javascript:void(0);">Certified<span>Quality Assured</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">           
+                                                        <button type="submit"  class="btn btn-success" >Add to cart</button>&nbsp;<br>
+            
+                                                    </div>
+                                                </div>
                                         </div>
-                                    </div>
-                            </div>
+                            </form>
+                           
                             <div class="row" style="width: 100%; padding: 0px;">
                                <div class="col-lg-12">
                                     <div class="description description-tabs">
@@ -438,11 +445,12 @@
                                                     </div>
                                                 <div id="menu2" class="tab-pane fade">
                                                     <br>
-                                                    <form ng-submit="productONLY.doComment(CommentData);"class="well padding-bottom-10" >
+                                                    <!---ng-submit="productONLY.doComment(CommentData);"-->
+                                                    <form ng-submit="productONLY.doComment(CommentData); " ng-init="productONLY.CommentData.name ='sdfdsf';  " class="well padding-bottom-10" >
                                                         <textarea ng-model="productONLY.CommentData.content" rows="2" class="form-control" placeholder="Write a review"></textarea>
-                                                        <input type="text" class="form-control"  value="{{main.username}}"   ng-model="productONLY.CommentData.name" >
-                                                        <input type="text" class="form-control"   value="{{productONLY.dataonly.id}}" ng-model="productONLY.CommentData.idProduct" >
-                                                        <input type="text" class="form-control"  value="sadasd" ng-model="productONLY.CommentData.date" >
+                                                        <input type="text" class="form-control"    ng-model="productONLY.CommentData.name" >
+                                                        <input type="text" class="form-control"    ng-model="productONLY.CommentData.idProduct" data-ng-init="{{productONLY.dataonly._id}}">
+                                                        <input type="text" class="form-control"   ng-model="productONLY.CommentData.date" value="asdsadas">
                                                        
                                                         <div class="margin-top-10">
                                                             <button type="submit" style="margin-top: 10px;" class="btn btn-sm btn-primary pull-right">
