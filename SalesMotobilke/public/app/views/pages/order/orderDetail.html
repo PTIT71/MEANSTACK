@@ -1,8 +1,10 @@
-<button type="button" class="btn btn-info" ng-click="order.back();" style="min-height: 430px;">
-    <span class="glyphicon glyphicon-remove"></span> Back
-</button></td>
-<div class="container" ng-init="order.getOrder();">
+<div class="container" ng-init="order.getOrder();" style="min-height: 430px;">
     {{order.order}}
+    <div class="row">
+        <button type="button" class="btn btn-info" ng-click="order.back();">
+            <span class="glyphicon glyphicon-remove"></span> Back
+        </button>
+    </div>
     <div class="row">
         <div class="col-sm-12 col-md-offset-1">
             <table class="table table-hover">

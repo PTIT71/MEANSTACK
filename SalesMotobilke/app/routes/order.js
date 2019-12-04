@@ -237,10 +237,22 @@ module.exports = function (router) {
                     });
                 } else {
                     let email = order.email;
-                    let message = "Đã đặt hàng : " + JSON.stringify(order);
+                    let message = "";
+
+                    let productInOrder = order.productInOrder;
+                    let count = 0;
+                    let cost = 0;
+                    productInOrder.forEach((product) => {
+                        product.total = product.count * product.cost;
+                        count += product.count;
+                        cost += product.total;
+                    })
+                    order.count = count;
+                    order.cost = cost;
                     mailer.sendNotifyOrder({
                         email: email,
-                        message: message
+                        message: message,
+                        data: order
                     })
                     res.json({
                         success: true,
