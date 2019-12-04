@@ -356,19 +356,17 @@
               
                     
     </div>
-    {{main.username}}
-    {{main._id}}
+  
     <div class="col-lg-9" data-ng-init="productONLY.getOnlyProduct();">
-           
-           
+        
             <div class="col-sm-12 col-md-12 col-lg-12">
                     <!-- product -->
                     <div class="product-content product-wrap clearfix product-deatil">
                         <div class="row">
                             <form ng-submit="productONLY.SelectProduct(OrderData);">
-                                    <input type="text" class="form-control"     ng-model="productONLY.OrderData.userId" >
-                                    <input type="text" class="form-control"    ng-model="productONLY.OrderData.productId" >
-                                    <div class="col-md-5 col-sm-12 col-xs-12 ">
+                                    <input type="text" class="form-control"  style="display:none;"   ng-model="productONLY.OrderData.userId"  ng-if="main.userid!==undefined" data-ng-init="{{productONLY.OrderData.userId =main.userid}}; " >
+                                    <input type="text" class="form-control"  style="display:none;"   ng-model="productONLY.OrderData.productId" ng-if="productONLY.dataonly._id!==undefined" data-ng-init="{{productONLY.OrderData.productId =productONLY.dataonly._id}}; "  >
+                                        <div class="col-md-5 col-sm-12 col-xs-12 ">
                                             <div class="product-image">
                                                 <div id="myCarousel-2" class="carousel slide">
                                                     <div class="carousel-inner">
@@ -448,9 +446,9 @@
                                                     <!---ng-submit="productONLY.doComment(CommentData);"-->
                                                     <form ng-submit="productONLY.doComment(CommentData); "  class="well padding-bottom-10" >
                                                         <textarea ng-model="productONLY.CommentData.content" rows="2" class="form-control" placeholder="Write a review"></textarea>
-                                                        <input type="text" class="form-control"    ng-model="productONLY.CommentData.name" ng-if="main.username!==undefined" data-ng-init="{{productONLY.CommentData.name =main.username}}; " >
-                                                        <input type="text" class="form-control"    ng-model="productONLY.CommentData.idProduct" ng-if="productONLY.dataonly._id!==undefined" data-ng-init="{{productONLY.CommentData.idProduct = productONLY.dataonly._id}}">
-                                                        <input type="text" class="form-control"   ng-model="productONLY.CommentData.date" ng-if="productONLY.dateDay!==undefined" data-ng-init="{{productONLY.CommentData.date =productONLY.dateDay}}; ">
+                                                        <input type="text" class="form-control" style="display: none;"    ng-model="productONLY.CommentData.name" ng-if="main.username!==undefined" data-ng-init="{{productONLY.CommentData.name =main.username}}; " >
+                                                        <input type="text" class="form-control"  style="display: none;"   ng-model="productONLY.CommentData.idProduct" ng-if="productONLY.dataonly._id!==undefined" data-ng-init="{{productONLY.CommentData.idProduct = productONLY.dataonly._id}}">
+                                                        <input type="text" class="form-control"  style="display: none;"   ng-model="productONLY.CommentData.date" ng-if="productONLY.dateDay!==undefined" data-ng-init="{{productONLY.CommentData.date =productONLY.dateDay}}; ">
                                                        
                                                         <div class="margin-top-10"> 
                                                             <button type="submit" style="margin-top: 10px;" class="btn btn-sm btn-primary pull-right">
