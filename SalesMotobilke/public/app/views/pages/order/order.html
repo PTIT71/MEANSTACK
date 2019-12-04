@@ -1,5 +1,4 @@
-<div ng-init="order.getOrders();"></div>
-<div class="container">
+<div class="container" ng-init="order.getOrders();">
     <div class="row">
         <div class="col-md-12">
             <table class="table table-bordered">
@@ -10,14 +9,15 @@
                         <th>Count</th>
                         <th>Cost</th>
                         <th>State</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="order in order.data">
-                        <td>{{order.no}}</td>
+                    <tr ng-repeat="orderDetail in order.orders"  ng-if="orderDetail != null">
+                        <td>{{orderDetail.no}}</td>
                         <td>
                             <div>
-                                <div ng-repeat="product in order.productInOrder">
+                                <div ng-repeat="product in orderDetail.productInOrder">
                                     <div><strong>{{product.name}}</strong></div>
                                     <div style="margin-left: 25px;">Count : <span class="badge">{{product.count}}</span>
                                     </div>
@@ -28,9 +28,14 @@
                             </div>
 
                         </td>
-                        <td>{{order.count}}</td>
-                        <td>{{order.cost | currency}}</td>
-                        <td>{{order.state}}</td>
+                        <td>{{orderDetail.count}}</td>
+                        <td>{{orderDetail.cost | currency}}</td>
+                        <td>{{orderDetail.state}}</td>
+                        <td>
+                            <button type="button" class="btn btn-info" ng-click="order.viewOrder(orderDetail._id);">
+                                <span class="glyphicon glyphicon-remove"></span> View
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

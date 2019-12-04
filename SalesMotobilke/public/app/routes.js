@@ -63,6 +63,12 @@ angular.module('appRoutes', ['ngRoute'])
                 controllerAs: 'order'
             })
 
+            .when('/order/:orderId', {
+                templateUrl: "app/views/pages/order/orderDetail.html",
+                controller: 'orderController',
+                controllerAs: 'order'
+            })
+
             .otherwise({
                 redirectTo: '/'
             });

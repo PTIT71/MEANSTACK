@@ -71,6 +71,7 @@ module.exports = function (router) {
                             }
                             console.log("Order : " + JSON.stringify(order));
                             order.save(function (err) {
+                                console.log(err);
                                 if (err) {
                                     console.log("Add order got exception : ");
                                     console.log(err);
@@ -183,23 +184,46 @@ module.exports = function (router) {
         let orderId = req.params.orderId;
         let productId = req.params.productId;
         Order.findById(orderId).then((order) => {
-            let productInOrder = order.productInOrder.filter(product => {
-                return product._id != productId;
-            });
-            order.productInOrder = productInOrder;
-            order.save(function (err) {
-                if (err) {
-                    res.json({
-                        success: false,
-                        message: 'Fail to delete product'
-                    });
-                } else {
-                    res.json({
-                        success: true,
-                        message: 'Sucesesfully for delete product'
-                    });
-                }
-            });
+            if (order.state == "IN_ORDER") {
+                let productInOrder = order.productInOrder.filter(product => {
+                    console.log("Product : " + JSON.stringify(product));
+                    if (product.id == productId) {
+                        console.log("Remove " + product.id);
+                        if (product.count > 1) {
+                            console.log("Remove " + product.id + " , count : " + product.count);
+                            product.count = product.count - 1;
+                            console.log("After remove " + product.id + " , count : " + product.count);
+                            return true;
+                        } else {
+                            console.log("Remove " + product.id);
+                            return false;
+                        }
+                    }
+                    console.log("No remove " + product.id);
+                    return true;
+                });
+                order.productInOrder = [...productInOrder];
+                console.log(order);
+                order.markModified('productInOrder');
+                order.save(function (err) {
+                    if (err) {
+                        res.json({
+                            success: false,
+                            message: 'Fail to delete product'
+                        });
+                    } else {
+                        res.json({
+                            success: true,
+                            message: 'Sucesesfully for delete product'
+                        });
+                    }
+                });
+            } else {
+                res.json({
+                    success: false,
+                    message: 'Fail to delete product'
+                });
+            }
         }).catch(err => {
             console.log("Get order by id got exception : ");
             console.log(err);
