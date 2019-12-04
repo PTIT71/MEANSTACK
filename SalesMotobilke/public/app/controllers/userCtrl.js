@@ -59,13 +59,13 @@ angular.module('userControllers',[])
    
 
 })
-.controller('productCtrl', function($http,Product){
+.controller('productCtrl', function($http,Products, ProductOnly){
     var app =this;
-    this.getUser = function(){
+    this.getAllProduct = function(){
         app.errorMsg = false;
         app.loading = true;
-        console.log('Submit form register-----------------------');
-        Product.get().then(function(data){
+        console.log('=================gfjksdabfjksafbkjasdbfjsakdbfkjsadbfjkadsbjfksabdj-----------------------');
+        Products.get().then(function(data){
             console.log(data.data);
             app.dataProduct = data.data;
             console.log('------------------');
@@ -73,4 +73,99 @@ angular.module('userControllers',[])
         });
        
     };
-});
+
+    
+})
+
+/*
+.controller('OnlyProduct', function(ProductOnly) {
+    var app =this;
+    this.getOnlyProduct = function(){
+        app.errorMsg = false;
+        app.loading = true;
+        console.log('=================gfjksdabfjksafbkjasdbfjsakdbfkjsadbfjkadsbjfksabdj-----------------------');
+        ProductOnly.get('5dd11f95181d2c194ca5b624').then(function(data){
+            console.log(data.data);
+            app.dataonly = data.data;
+            console.log('------------------');
+            console.log(app.dataonly);
+        });
+       
+    };
+  });
+  */
+ .controller('OnlyProduct',  function(Comment, ProductComment, ProductOnly, $scope, $routeParams) {
+   
+     console.log("Hellooooooooo");
+     $scope.ids = $routeParams.ids;
+     //$scope.productONLY.CommentData.name = "sfsdfsdf";
+    // $scope.productONLY.CommentData.idProduct = $routeParams.ids;
+    // $scope.productONLY.CommentData.date = new Date();
+     var app =this;
+     /*
+        this.getOnlyProduct = function(){
+            app.errorMsg = false;
+            app.loading = true;
+            console.log('=================gfjksdabfjksafbkjasdbfjsakdbfkjsadbfjkadsbjfksabdj-----------------------');
+            ProductOnly.get('5dd11f95181d2c194ca5b624').then(function(data){
+                console.log(data.data);
+                app.dataonly = data.data;
+                console.log('------------------');
+                console.log(app.dataonly);
+            });
+        
+        };
+*/
+      
+       this.getOnlyProduct = function(){
+        app.errorMsg = false;
+        app.loading = true;
+            ProductOnly.get($scope.ids).then(function(data){
+                console.log(data.data);
+                app.dataonly = data.data;
+                console.log('-------la la lal a aaaaaaaaaaaaa-----------');
+                console.log(app.dataonly);
+            });
+        }
+
+        this.getComment = function()
+        {
+            app.errorMsg = false;
+            app.loading = true;
+            ProductComment.get($scope.ids).then(function(data){
+                    console.log(data.data);
+                    app.dataComment = data.data;
+                    console.log('-------la la lal a-----------');
+                    console.log(app.dataComment);
+                });
+        }
+
+     
+        this.doComment = function(CommentData){
+            console.log('Submit form comment');
+            console.log(app.CommentData);
+            Comment.create(app.CommentData).then(function(data){
+                console.log(data.data.success);
+                console.log(data.data.message);
+                if(data.data.success)
+                {
+                    app.loading =false;
+                    app.successMsg = data.data.message + '.... Redirecting';
+                    $timeout(function(){
+                        $location.path('/');
+                    },3000)
+                    
+                }
+                else
+                {
+                    app.loading =false;
+                    app.errorMsg = data.data.message;
+                }
+            });
+        };
+
+        this.SelectProduct = function(){
+            console.log("23456789234567890234567890345678034567890");
+        };
+
+    });

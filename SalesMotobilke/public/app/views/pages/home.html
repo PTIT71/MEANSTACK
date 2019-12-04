@@ -51,14 +51,16 @@
       </div>
 
       <div class="row">
-
-        <div data-ng-init="product.getUser();"></div>
+        <div data-ng-init="product.getOnlyProduct();">
+          {{product.dataonly}}
+        </div>
+        <div data-ng-init="product.getAllProduct();"></div>
         <div class="col-lg-4 col-md-6 mb-4 abcAmincation " data-ng-repeat="pro in product.dataProduct">
           <div class="card h-100">
-            <a href="/view/124124321"><img class="card-img-top" src="resources/images/{{pro.image}}" alt=""></a>
+            <a href="/view/{{pro._id}}"><img class="card-img-top" src="resources/images/{{pro.image}}" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a style="text-decoration: none;" href="view/124124321">{{pro.name}}</a>
+                <a style="text-decoration: none;" href="view/{{pro._id}}">{{pro.name}}</a>
               </h4>
               <h5>${{pro.cost}}</h5>
               <p class="card-text">{{pro.description}}</p>

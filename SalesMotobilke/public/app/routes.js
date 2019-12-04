@@ -53,8 +53,10 @@ angular.module('appRoutes', ['ngRoute'])
                 controllerAs: 'google'
             })
 
-            .when('/view/:id', {
+            .when('/view/:ids', {
                 templateUrl: "app/views/pages/users/detail.html",
+                controller:'OnlyProduct',
+                controllerAs: 'productONLY'
             })
 
             .when('/order', {

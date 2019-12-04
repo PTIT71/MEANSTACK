@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var Product = require('../models/product');
+var Comment = require('../models/comment');
 var jwt = require('jsonwebtoken');
 var secret = 'harrypotter';
 
@@ -35,7 +36,7 @@ module.exports = function(router){
     });
 
     router.get('/getAllproduct', function(req,res){
-        console.log('Get request for all User');
+        console.log('Get request for all User============');
         Product.find({})
         .exec(function(err,Product){
             if(err){
@@ -43,6 +44,74 @@ module.exports = function(router){
             }
             else{
                 res.json(Product);
+                console.log("Get oke");
+            }
+        });
+    });
+
+    router.get('/product/:id', function(req, res){
+        console.log('Get request for a single videos');
+        Product.findById(req.params.id)
+        .exec(function(err,Product){
+            if(err){
+                console.log("Error retiveing videos");
+            }
+            else{
+                res.json(Product);
+                console.log("Get oke");
+            }
+        });
+    });
+
+    router.post('/comment', function(req,res){
+        var comment = new Comment();
+        comment.name = req.body.name;
+        comment.content = req.body.content;
+        comment.idProduct = req.body.idProduct;
+        comment.date = req.body.date;
+        
+       
+        comment.save(function(err){
+                if(err)
+                {
+                    res.json({success:false, message:err});
+                }
+                else
+                {
+                    res.json({success:true, message:'Sucesesfully for create comment'});
+                }
+            });
+        
+        
+           
+        
+    });
+
+    router.get('/getAllComment', function(req,res){
+        console.log('Get request for all User============');
+        Comment.find({})
+        .exec(function(err,Comment){
+            if(err){
+                console.log("Error retiveing Moto");
+            }
+            else{
+                res.json(Comment);
+                console.log("Get oke");
+            }
+        });
+    });
+
+    router.get('/comment/:idProduct', function(req, res){
+        console.log('Get request for a single videos');
+        Comment.find({
+            "idProduct": req.params.idProduct
+        })
+        .exec(function(err,Comment){
+            if(err){
+                console.log("Error retiveing videos");
+            }
+            else{
+                res.json(Comment);
                 console.log("Get oke");
             }
         });
@@ -70,7 +139,7 @@ module.exports = function(router){
                 }
                 else{
 
-                    var tokens = jwt.sign({username: user.username, email: user.email}, secret, {expiresIn: '24h'});
+                    var tokens = jwt.sign({username: user.username, email: user.email}, secret, {expiresIn: 5});
                     res.json({success:true, message:'User authenticated!', token: tokens});
                 }
 
@@ -78,28 +147,23 @@ module.exports = function(router){
         });
     });
 
-    router.use(function(req,res,next){
+    router.use(function(req, res, next) {
         var token = req.body.token || req.body.query || req.headers['x-access-token'];
 
-        // if(token)
-        // {
-        //     jwt.verify(token, secret, function(err, decoded){
+        if (token) {
+            jwt.verify(token, secret, function(err, decoded) {
+                if (err) {
+                    res.json({ success: false, message: 'Token invalid', expired: true }); // new variable if token expires
+                } else {
+                    req.decoded = decoded;
+                    next();
+                }
+            });
+        } else {
+            res.json({ success: false, message: 'No token provided' });
+        }
 
-        //         if(err)  
-        //             res.json({success:false, message: 'Token invalid'});
-        //         else
-        //         {
-        //             req.decoded = decoded;
-        //             next();
-        //         }
-                
-        //     });
-        // }
-        // else{
-        //     res.json({success:false, message: 'No token provides'});
-        // }
-        next();
-    })
+    });
 
     router.post('/me', function(req,res){
         res.send( req.decoded);

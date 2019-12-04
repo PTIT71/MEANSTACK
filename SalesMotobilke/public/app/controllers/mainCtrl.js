@@ -1,27 +1,28 @@
 angular.module('mainController',[])
-.controller('mainCtrl', function(Auth,$location,$timeout,$rootScope, $window){
-    var app =this;
-    app.loadme= false;
-    $rootScope.$on('$routeChangeStart', function(){
-        if(Auth.isLoggedIn()){
-            console.log('Success: user is logged in');
-            app.isLoggedIn = true;
-            Auth.getUser().then(function(data){
-                console.log(data);
-                app.username = data.data.username;
-                app.email = data.data.email;
-                app.loadme= true;
-            });
-        }
-        else{
-            console.log('Failure: User is NOT logged in');
-            app.isLoggedIn = false;
-            app.username='';
-            app.loadme= true;
-        }
+.controller('mainCtrl', function(Auth, $timeout, $location, $rootScope, $window, $route) {
+    var app = this;
 
-        if($location.hash() == '_=_') $location.hash(null);
+    app.loadme = false;
+
+    $rootScope.$on('$routeChangeStart', function() {
+        if (Auth.isLoggedIn()) {
+            app.isLoggedIn = true;
+            Auth.getUser().then(function(data) {
+                app.username = data.data.username;
+                app.useremail = data.data.email;
+                app.loadme = true;
+                if (data.data.expired) app.logout();
+            });
+        } else {
+            app.isLoggedIn = false;
+            app.username = '';
+            app.loadme = true;
+        }
+        if ($location.hash() == '_=_') $location.hash(null);
+
     });
+
+
 
     this.facebook = function(){
         
@@ -48,8 +49,6 @@ angular.module('mainController',[])
 
         console.log('Submit form register');
         Auth.login(app.loginData).then(function(data){
-            console.log(data.data.success);
-            console.log(data.data.message);
             if(data.data.success)
             {
                 app.loading =false;

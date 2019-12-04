@@ -335,7 +335,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-
+    <div >
+      </div>
 <!-- Toggleable / Dynamic Tabs -->
 <div class="row">
     <div class="col-lg-3">
@@ -353,9 +354,10 @@
                       <a href="#" class="list-group-item">Naked Bikes</a>
                     </div>
               
-                 
+                    
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9" data-ng-init="productONLY.getOnlyProduct();">
+            {{productONLY.dataonly}}
             <div class="col-sm-12 col-md-12 col-lg-12">
                     <!-- product -->
                     <div class="product-content product-wrap clearfix product-deatil">
@@ -363,11 +365,10 @@
                             <div class="col-md-5 col-sm-12 col-xs-12 ">
                                 <div class="product-image">
                                     <div id="myCarousel-2" class="carousel slide">
-                
                                         <div class="carousel-inner">
-                                            <!-- Slide 3 -->
+                                            <!-- Slide 3  resources/images/{{productONLY.image}}-->
                                             <div class="item">
-                                                <img src="resources/images/moto1.jpg" width="100%" style="padding: 20px;" alt="">
+                                                <img src="resources/images/{{productONLY.dataonly.image}}" width="100%" style="padding: 20px;" alt="">
                                             </div>
                                         </div>
                                         <a class="left carousel-control" href="#myCarousel-2" data-slide="prev"> <span
@@ -378,10 +379,10 @@
                                 </div>
                             </div>
                             <div class="col-md-7 col-sm-12 col-xs-12">
-                
+                                
                                 <h2 class="name">
-                                    Motobike 1
-                                    <small>Product by <a href="javascript:void(0);">Toyota</a></small>
+                                    {{productONLY.dataonly.name}}
+                                    <small> <a href="javascript:void(0);"></a></small>
                                     <i class="fa fa-star fa-2x text-primary"></i>
                                     <i class="fa fa-star fa-2x text-primary"></i>
                                     <i class="fa fa-star fa-2x text-primary"></i>
@@ -394,7 +395,7 @@
                                 </h2>
                                 <hr>
                                 <h3 class="price-container">
-                                    $129.54
+                                    $ {{productONLY.dataonly.cost}}
                                     <small>*includes tax</small>
                                 </h3>
                                 <div class="certified">
@@ -405,12 +406,13 @@
                                 </div>
                                 <hr>
                                 <div class="row">
-                                        <div class="col-sm-12 col-md-6 col-lg-6">
-                                            <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
+                                        <div class="col-sm-12 col-md-6 col-lg-6">           
+                                            <button type="button"  class="btn btn-success" ng-click="productONLY.SelectProduct();">Add to cart</button>&nbsp;<br>
+
                                         </div>
                                     </div>
                             </div>
-                            <div class="row">
+                            <div class="row" style="width: 100%; padding: 0px;">
                                <div class="col-lg-12">
                                     <div class="description description-tabs">
                                             <nav class="nav nav-tabs nav-justified">
@@ -420,13 +422,10 @@
                                             </nav>
                         
                                             <div class="tab-content">
-                                                <div id="home" class="tab-pane fade show active">
+                                                <div id="home" class="tab-pane fade show active" style="width: 100%;">
                                                     <br>
-                                                    <strong>Description Title</strong>
-                                                    <p>Integer egestas, orci id condimentum eleifend, nibh nisi pulvinar eros, vitae ornare
-                                                        massa neque ut orci. Nam aliquet lectus sed odio eleifend, at iaculis dolor egestas.
-                                                        Nunc elementum pellentesque augue sodales porta. Etiam aliquet rutrum turpis, feugiat
-                                                        sodales ipsum consectetur nec. </p>
+                                                    <strong>You can see this product is:</strong>
+                                                    <p>{{productONLY.dataonly.description}} </p>
                                                 </div>
                                                 <div id="menu1" class="tab-pane fade">
                                                         <br>
@@ -438,10 +437,14 @@
                                                     </div>
                                                 <div id="menu2" class="tab-pane fade">
                                                     <br>
-                                                    <form method="post" class="well padding-bottom-10" onsubmit="return false;">
-                                                        <textarea rows="2" class="form-control" placeholder="Write a review"></textarea>
+                                                    <form ng-submit="productONLY.doComment(CommentData);"class="well padding-bottom-10" >
+                                                        <textarea ng-model="productONLY.CommentData.content" rows="2" class="form-control" placeholder="Write a review"></textarea>
+                                                        <input type="text" class="form-control"  value="{{main.username}}"   ng-model="productONLY.CommentData.name" >
+                                                        <input type="text" class="form-control"   value="{{productONLY.dataonly.id}}" ng-model="productONLY.CommentData.idProduct" >
+                                                        <input type="text" class="form-control"  value="sadasd" ng-model="productONLY.CommentData.date" >
+                                                       
                                                         <div class="margin-top-10">
-                                                            <button type="submit" class="btn btn-sm btn-primary pull-right">
+                                                            <button type="submit" style="margin-top: 10px;" class="btn btn-sm btn-primary pull-right">
                                                                 Submit Review
                                                             </button>
                                                             <a href="javascript:void(0);" class="btn btn-link profile-link-btn" rel="tooltip"
@@ -459,13 +462,13 @@
                                                         </div>
                                                     </form>
                         
-                                                    <div class="chat-body no-padding profile-message">
+                                                    <div class="chat-body no-padding profile-message" style="margin-top:20px" data-ng-init="productONLY.getComment();">
                                                         <ul>
-                                                            <li class="message">
+                                                            <li class="message"  style="margin-top:20px" data-ng-repeat="comment in productONLY.dataComment">
                                                                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="online">
                                                                 <span class="message-text">
                                                                     <a href="javascript:void(0);" class="username">
-                                                                        Alisha Molly
+                                                                        {{comment.name}}
                                                                         <span class="badge">Purchase Verified</span>
                                                                         <span class="pull-right">
                                                                             <i class="fa fa-star fa-2x text-primary"></i>
@@ -475,9 +478,7 @@
                                                                             <i class="fa fa-star fa-2x text-muted"></i>
                                                                         </span>
                                                                     </a>
-                                                                    Can't divide were divide fish forth fish to. Was can't form the, living life
-                                                                    grass darkness very image let unto fowl isn't in blessed fill life yielding
-                                                                    above all moved
+                                                                    {{comment.content}}
                                                                 </span>
                                                                 <ul class="list-inline font-xs">
                                                                     <li>
@@ -485,34 +486,7 @@
                                                                                 class="fa fa-thumbs-up"></i> This was helpful (22)</a>
                                                                     </li>
                                                                     <li class="pull-right">
-                                                                        <small class="text-muted pull-right ultra-light"> Posted 1 year ago
-                                                                        </small>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                            <li class="message">
-                                                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="online">
-                                                                <span class="message-text">
-                                                                    <a href="javascript:void(0);" class="username">
-                                                                        Aragon Zarko
-                                                                        <span class="badge">Purchase Verified</span>
-                                                                        <span class="pull-right">
-                                                                            <i class="fa fa-star fa-2x text-primary"></i>
-                                                                            <i class="fa fa-star fa-2x text-primary"></i>
-                                                                            <i class="fa fa-star fa-2x text-primary"></i>
-                                                                            <i class="fa fa-star fa-2x text-primary"></i>
-                                                                            <i class="fa fa-star fa-2x text-primary"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                    Excellent product, love it!
-                                                                </span>
-                                                                <ul class="list-inline font-xs">
-                                                                    <li>
-                                                                        <a href="javascript:void(0);" class="text-info"><i
-                                                                                class="fa fa-thumbs-up"></i> This was helpful (22)</a>
-                                                                    </li>
-                                                                    <li class="pull-right">
-                                                                        <small class="text-muted pull-right ultra-light"> Posted 1 year ago
+                                                                        <small class="text-muted pull-right ultra-light"> {{comment.date}}
                                                                         </small>
                                                                     </li>
                                                                 </ul>

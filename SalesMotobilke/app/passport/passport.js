@@ -16,7 +16,7 @@ module.exports = function(app, passport){
 
   passport.serializeUser(function(user, done) {    
     console.log('----------serializeUser---------');
-    token = jwt.sign({username: user.username, email: user.email}, secret, {expiresIn: '24h'});
+    token = jwt.sign({username: user.username, email: user.email}, secret, {expiresIn: 300});
     done(null, user.id);
   });
   
@@ -81,7 +81,7 @@ module.exports = function(app, passport){
             } 
             if(user && user != null)
             {
-              console.log('----------Have user---------');
+              console.log('----------Have user ssssssss---------');
               done(null,user);
               
               console.log(user);

@@ -7,6 +7,7 @@ angular.module('userApp',
                 'authServices',
                 'orderService',
                 'orderController'
+                
               //  'productControllers',
                // 'productServices',
             ])
