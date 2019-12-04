@@ -37,6 +37,10 @@ angular.module('mainController',[])
     this.register = function(){
         $window.location = $window.location.protocol + '//' + $window.location.host  + '/register';
     }
+
+    this.order = function(){
+        $window.location = $window.location.protocol + '//' + $window.location.host  + '/order';
+    }
     
 
 
