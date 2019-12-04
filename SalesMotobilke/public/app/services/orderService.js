@@ -5,6 +5,11 @@ angular.module('orderService', [])
             return $http.get('/api/order/');
         }
 
+        orderFactory.getOrdersByUser = function (userId) {
+            return $http.get('/api/order/' + userId);
+        }
+
+
         orderFactory.getOrder = function (orderId) {
             return $http.get('/api/order/' + orderId);
         }
@@ -14,7 +19,7 @@ angular.module('orderService', [])
         }
 
         orderFactory.submitOrder = function (orderId) {
-            return $http.post('/api/order/' + orderId );
+            return $http.post('/api/order/' + orderId);
         }
         return orderFactory;
     });

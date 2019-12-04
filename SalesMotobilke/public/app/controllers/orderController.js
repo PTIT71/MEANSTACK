@@ -25,6 +25,30 @@ angular.module('orderController', [])
             });
         };
 
+        this.getOrdersByUser = function (userId) {
+            console.log('Get orders-----------------------');
+            orderService.getOrdersByUser(userId).then(function (data) {
+                console.log(data.data);
+                let orders = data.data;
+                let no = 1;
+                app.orders = orders.map((order, index) => {
+                    if (order.productInOrder.length == 0) {
+                        return null;
+                    }
+                    order.no = no++;
+                    let count = 0;
+                    let cost = 0;
+                    for (let i = 0; i < order.productInOrder.length; i++) {
+                        count += parseInt(order.productInOrder[i].count, 10);
+                        cost += parseInt(order.productInOrder[i].count, 10) * parseInt(order.productInOrder[i].cost, 10);
+                    }
+                    order.count = count;
+                    order.cost = cost;
+                    return order;
+                });
+            });
+        };
+
         this.getOrder = function () {
             console.log('Get order-----------------------');
             let orderId = $routeParams.orderId;
