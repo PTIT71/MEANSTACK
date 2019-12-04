@@ -359,7 +359,7 @@
     {{main.username}}
     {{main._id}}
     <div class="col-lg-9" data-ng-init="productONLY.getOnlyProduct();">
-            {{productONLY.dataonly}}
+           
            
             <div class="col-sm-12 col-md-12 col-lg-12">
                     <!-- product -->
@@ -446,13 +446,13 @@
                                                 <div id="menu2" class="tab-pane fade">
                                                     <br>
                                                     <!---ng-submit="productONLY.doComment(CommentData);"-->
-                                                    <form ng-submit="productONLY.doComment(CommentData); " ng-init="productONLY.CommentData.name ='sdfdsf';  " class="well padding-bottom-10" >
+                                                    <form ng-submit="productONLY.doComment(CommentData); "  class="well padding-bottom-10" >
                                                         <textarea ng-model="productONLY.CommentData.content" rows="2" class="form-control" placeholder="Write a review"></textarea>
-                                                        <input type="text" class="form-control"    ng-model="productONLY.CommentData.name" >
-                                                        <input type="text" class="form-control"    ng-model="productONLY.CommentData.idProduct" data-ng-init="{{productONLY.dataonly._id}}">
-                                                        <input type="text" class="form-control"   ng-model="productONLY.CommentData.date" value="asdsadas">
+                                                        <input type="text" class="form-control"    ng-model="productONLY.CommentData.name" ng-if="main.username!==undefined" data-ng-init="{{productONLY.CommentData.name =main.username}}; " >
+                                                        <input type="text" class="form-control"    ng-model="productONLY.CommentData.idProduct" ng-if="productONLY.dataonly._id!==undefined" data-ng-init="{{productONLY.CommentData.idProduct = productONLY.dataonly._id}}">
+                                                        <input type="text" class="form-control"   ng-model="productONLY.CommentData.date" ng-if="productONLY.dateDay!==undefined" data-ng-init="{{productONLY.CommentData.date =productONLY.dateDay}}; ">
                                                        
-                                                        <div class="margin-top-10">
+                                                        <div class="margin-top-10"> 
                                                             <button type="submit" style="margin-top: 10px;" class="btn btn-sm btn-primary pull-right">
                                                                 Submit Review
                                                             </button>

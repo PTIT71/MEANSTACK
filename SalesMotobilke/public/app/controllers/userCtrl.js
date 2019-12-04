@@ -94,7 +94,7 @@ angular.module('userControllers',[])
     };
   });
   */
- .controller('OnlyProduct',  function(OrderProduct, Comment, ProductComment, ProductOnly, $scope, $routeParams) {
+ .controller('OnlyProduct',  function(OrderProduct, Comment, ProductComment, ProductOnly, $scope, $routeParams,$location, $window) {
    
      console.log("Hellooooooooo");
      $scope.ids = $routeParams.ids;
@@ -135,8 +135,12 @@ angular.module('userControllers',[])
             ProductComment.get($scope.ids).then(function(data){
                     console.log(data.data);
                     app.dataComment = data.data;
+                    var day = new Date();
+                    
+                    app.dateDay = day.getFullYear()+'-'+(day.getMonth()+1)+'-'+day.getDate();
                     console.log('-------la la lal a-----------');
                     console.log(app.dataComment);
+                    console.log('date' +  app.dateDay);
                 });
         }
 
@@ -145,24 +149,13 @@ angular.module('userControllers',[])
             console.log('Submit form comment');
             console.log(app.CommentData);
             Comment.create(app.CommentData).then(function(data){
+                $window.location.reload();
                 console.log(data.data.success);
                 console.log(data.data.message);
-                if(data.data.success)
-                {
-                    app.loading =false;
-                    app.successMsg = data.data.message + '.... Redirecting';
-                    $timeout(function(){
-                        $location.path('/');
-                    },3000)
-                    
-                }
-                else
-                {
-                    app.loading =false;
-                    app.errorMsg = data.data.message;
-                }
             });
         }
+
+       
 
         this.SelectProduct = function(OrderData){
             console.log('Submit form order');
